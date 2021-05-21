@@ -24,7 +24,22 @@ public class Organizations {
         this.orgRecycleType = type;
         this.connectedUsers = connects;
         this.covidFlag = cFlag;
-        this. deliveryFlag = dFlag;
+        this.deliveryFlag = dFlag;
     }
 
+    public String getName(){
+        return this.orgName;
+    }
+
+    public String getOrgRecycleType(){
+        return this.orgRecycleType;
+    }
+
+    public String getCovidFlag(){
+        return this.covidFlag;
+    }
+
+    public String getDeliveryFlag(){
+        return this.deliveryFlag;
+    }
 }

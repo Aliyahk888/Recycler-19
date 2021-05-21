@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/rel_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:padding="15dp">
+
+
+        <TextView
+            android:id="@+id/orgNameText"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Organization Name"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/recycleTypeText"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orgNameText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Type"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/covidCheck"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="60dp"
+            android:visibility="invisible"
+            android:layout_toEndOf="@+id/orgNameText"
+            app:srcCompat="@drawable/covidlogo" />
+
+        <ImageView
+            android:id="@+id/deliveryCheck"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/recycleTypeText"
+            app:srcCompat="@drawable/deliverylogo" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

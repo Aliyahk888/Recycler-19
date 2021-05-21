@@ -25,6 +25,14 @@ public class userHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
 
+        browse=(Button)findViewById(R.id.browseOrgs);
+        browse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), typeSelect.class));
+            }
+        });
+
         firebaseAuth= FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser()==null){
             finish();
@@ -44,7 +52,7 @@ public class userHomepage extends AppCompatActivity {
                 if(v==logout){
                     firebaseAuth.signOut();
                     finish();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(),userLogin.class));
                 }
 
             }

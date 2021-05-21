@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.recycler_19">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -14,11 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recycler19">
+        <activity android:name=".connectedUsers"></activity>
+        <activity android:name=".organizationPage" />
+        <activity android:name=".browseOrgs" />
+        <activity android:name=".typeSelect" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAr3e09QBzy4w9oYcjd58Fv6LJncO0jYnE"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAr3e09QBzy4w9oYcjd58Fv6LJncO0jYnE" />
 
-        <activity android:name=".orgHomepage"></activity>
+        <activity android:name=".orgHomepage" />
         <activity android:name=".userHomepage" />
         <activity android:name=".orgSignup" />
         <activity android:name=".orgLogin" />

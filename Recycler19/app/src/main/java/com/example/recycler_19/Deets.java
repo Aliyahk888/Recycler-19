@@ -5,19 +5,18 @@ public class Deets {
     public String fullName;
     public String email;
     public String phone;
-    public String connected;
-
+    public int recyclePoints;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public Deets() {
     }
 
-    public Deets(String fullName, String email, String phone, String connected) {
+    public Deets(String fullName, String email, String phone, int recyclePoints) {
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.connected=connected;
+        this.recyclePoints = recyclePoints;
     }
 
     public String getUserName(){
@@ -30,5 +29,9 @@ public class Deets {
 
     public String getPhone(){
         return this.phone;
+    }
+
+    public int getRecyclePoints(){
+        return this.recyclePoints;
     }
 }

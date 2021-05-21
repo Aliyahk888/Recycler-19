@@ -1,5 +1,6 @@
 package com.example.recycler_19;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,9 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +47,7 @@ public class orgSignup extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth mAuth;
     private String userId;
 
     @Override
@@ -50,15 +55,17 @@ public class orgSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_signup);
 
-        //btPicker = (Button) findViewById(R.id.bt_picker);
+        mAuth = FirebaseAuth.getInstance();
+
+        btPicker = (Button) findViewById(R.id.bt_picker);
         back = (Button) findViewById(R.id.back_tobrowse);
         next = (Button) findViewById(R.id.btnSave);
 
-        //tw = (TextView) findViewById(R.id.eplaceseltext);
+        tw = (TextView) findViewById(R.id.eplaceseltext);
 
-        //covidEnabled = (RadioGroup) findViewById(R.id.contaminated);
-        //deliveryEnabled = (RadioGroup) findViewById(R.id.delivery);
-        //recycleType = (RadioGroup) findViewById(R.id.typeGroup);
+        covidEnabled = (RadioGroup) findViewById(R.id.contaminated);
+        deliveryEnabled = (RadioGroup) findViewById(R.id.delivery);
+        recycleType = (RadioGroup) findViewById(R.id.typeGroup);
 
         name = (EditText)findViewById(R.id.orgNameInput);
         abt = (EditText) findViewById(R.id.abtInput);
@@ -79,12 +86,7 @@ public class orgSignup extends AppCompatActivity {
                 orgPhone = phone.getText().toString();
                 orgPassword = password.getText().toString();
 
-                /*String ename= name.getText().toString();
-                String edesc= abt.getText().toString();
-                String ephone= phone.getText().toString();
-                String eemail= email.getText().toString();
-*/
-                /*int typeNum = recycleType.getCheckedRadioButtonId();
+                int typeNum = recycleType.getCheckedRadioButtonId();
                 type=(RadioButton)findViewById(typeNum);
                 String orgType = type.getText().toString();
 
@@ -96,16 +98,14 @@ public class orgSignup extends AppCompatActivity {
                 isDelivery=(RadioButton)findViewById(deliverySelected);
                 String dflagg = isDelivery.getText().toString();
 
-                 */
-                String orgLocation="",orgType="", cflagg="", dflagg="";
 
                 if(isEmpty(name) || isEmpty(abt)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();
                 }
                 else if(TextUtils.isEmpty(userId)){
-
-                    //createOrg(orgName, orgEmail, orgPhone, orgLocation, orgAbout, orgType, cflagg, dflagg);
-                    Toast.makeText(getApplicationContext(),"Event Created !!!",Toast.LENGTH_LONG).show();
+                    registerUser(orgEmail, orgPassword);
+                    createOrg(orgName, orgEmail, orgPhone, orgLocation, orgAbout, orgType, cflagg, dflagg);
+                    Toast.makeText(getApplicationContext(),"Organization Created !!!",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),orgHomepage.class));
                 }
             }
@@ -118,7 +118,7 @@ public class orgSignup extends AppCompatActivity {
             }
         });
 
-/*
+
 
         btPicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +133,7 @@ public class orgSignup extends AppCompatActivity {
                 }
             }
         });
-*/
+
 
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
@@ -185,7 +185,7 @@ public class orgSignup extends AppCompatActivity {
         });
     }
 
-/*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -198,7 +198,7 @@ public class orgSignup extends AppCompatActivity {
         }
     }
 
-*/
+
 
 
 
@@ -209,4 +209,34 @@ public class orgSignup extends AppCompatActivity {
         return tw.getText().toString().trim().length() == 0;
     }
 
+    private void registerUser(String uemail, String upassword) {
+
+        String email = uemail.trim();
+        String password = upassword.trim();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter E-mail", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), orgHomepage.class));
+                } else {
+                    Toast.makeText(orgSignup.this, "Registration error!", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+
+    }
 }

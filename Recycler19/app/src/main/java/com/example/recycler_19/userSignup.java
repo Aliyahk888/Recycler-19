@@ -63,9 +63,8 @@ public class userSignup extends AppCompatActivity {
                 String fullnm = fullname.getText().toString().trim();
                 String emailid = eml.getText().toString().trim();
                 String number = ph.getText().toString().trim();
-                //String uid = mAuth.getCurrentUser().getUid();
-                String connected ="";
-                Deets deets = new Deets(fullnm, emailid, number, connected);
+
+                Deets deets = new Deets(fullnm, emailid, number, 0);
                 mFirebaseDatabase.push().setValue(deets);
 
                 registerUser();
