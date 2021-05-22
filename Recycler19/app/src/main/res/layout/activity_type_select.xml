@@ -37,6 +37,7 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
+                android:background="@drawable/textshape"
                 android:text="Paper Waste"
                 android:textSize="20sp" />
 
@@ -47,6 +48,7 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
+                android:background="@drawable/textshape"
                 android:text="Plastic Waste"
                 android:textSize="20sp"/>
 
@@ -57,6 +59,7 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
+                android:background="@drawable/textshape"
                 android:text="Medical Waste"
                 android:textSize="20sp"/>
 
@@ -67,6 +70,7 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
+                android:background="@drawable/textshape"
                 android:text="Organic Waste"
                 android:textSize="20sp"/>
 
@@ -77,6 +81,7 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
+                android:background="@drawable/textshape"
                 android:text="E-Waste"
                 android:textSize="20sp"/>
 
@@ -88,6 +93,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="81dp"
                 android:text="Other Waste"
+                android:background="@drawable/textshape"
                 android:textSize="20sp"/>
 
             <Button
@@ -97,6 +103,7 @@
                 android:layout_marginStart="159dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="129dp"
+                android:background="@drawable/textshape"
                 android:text="Back Home"
                 android:textSize="18sp"/>
         </LinearLayout>

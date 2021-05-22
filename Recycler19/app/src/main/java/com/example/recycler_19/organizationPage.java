@@ -1,8 +1,10 @@
 package com.example.recycler_19;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,11 +31,14 @@ public class organizationPage extends AppCompatActivity {
     LinearLayout cLayout, dLayout;
     Button back, call, maps, connect;
     String clientName, clientPhone;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_page);
+
+        builder = new AlertDialog.Builder(this);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
         userDatabase = mFirebaseInstance.getReference("Users");
@@ -125,31 +130,46 @@ public class organizationPage extends AppCompatActivity {
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                organizationDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                            if(childSnapshot.child("orgName").getValue().equals(nameOrg)) {
-                                String parent = childSnapshot.getKey();
-                                if (childSnapshot.child("connectedUsers").child(clientPhone).exists()){   Toast.makeText(getApplicationContext(), "You are already connected with this Organization !!", Toast.LENGTH_LONG).show();
-                                }
-                                else{
-                                    organizationDatabase.child(parent).child("connectedUsers").child(clientPhone).child("Name").setValue(clientName);
-                                    organizationDatabase.child(parent).child("connectedUsers").child(clientPhone).child("Complete").setValue("No");
-                                    Toast.makeText(getApplicationContext(),"Connection Successful",Toast.LENGTH_LONG).show();
-                                    updateUserDatabase(phoneOrg, nameOrg, clientPhone);
-                                    startActivity(new Intent(getApplicationContext(), userHomepage.class));
-                                }
+                builder.setMessage("Are you sure you want to connect with this Organization? Your contact details will be made visible to them !")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                organizationDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                            if(childSnapshot.child("orgName").getValue().equals(nameOrg)) {
+                                                String parent = childSnapshot.getKey();
+                                                if (childSnapshot.child("connectedUsers").child(clientPhone).exists()){
+                                                    Toast.makeText(getApplicationContext(), "You are already connected with this Organization !!", Toast.LENGTH_LONG).show();
+                                                }
+                                                else{
+                                                    organizationDatabase.child(parent).child("connectedUsers").child(clientPhone).child("Name").setValue(clientName);
+                                                    organizationDatabase.child(parent).child("connectedUsers").child(clientPhone).child("Complete").setValue("No");
+                                                    Toast.makeText(getApplicationContext(),"Connection Successful",Toast.LENGTH_LONG).show();
+                                                    updateUserDatabase(phoneOrg, nameOrg, clientPhone);
+                                                    startActivity(new Intent(getApplicationContext(), userHomepage.class));
+                                                }
+                                            }
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                             }
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                //Creating dialog box
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("- Consent Form -");
+                alert.show();
             }
         });
     }

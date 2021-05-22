@@ -148,8 +148,6 @@ public class orgSignup extends AppCompatActivity {
             userId = mFirebaseDatabase.push().getKey();
         }
 
-        connectedUsers = "";
-
         Organizations org = new Organizations(name, email, phone, location, about, type,cFlag, dFlag);
 
         mFirebaseDatabase.child(userId).setValue(org);

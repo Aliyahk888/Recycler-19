@@ -11,14 +11,14 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginStart="142dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="141dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/recyclerlogo2" />
 
     <Button
         android:id="@+id/userLogin"
@@ -28,9 +28,10 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="46dp"
         android:background="@drawable/buttonshape"
+        android:backgroundTint="#FFFFFF"
         android:fontFamily="@font/montserrat"
         android:text="User"
-        android:textColor="#130D0D"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
         android:background="@drawable/buttonshape"
         android:fontFamily="@font/montserrat"
         android:text="Organization"
-        android:textColor="#130D0D"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
