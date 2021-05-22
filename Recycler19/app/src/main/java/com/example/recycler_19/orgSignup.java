@@ -150,7 +150,7 @@ public class orgSignup extends AppCompatActivity {
 
         connectedUsers = "";
 
-        Organizations org = new Organizations(name, email, phone, location, about, type, connectedUsers,cFlag, dFlag);
+        Organizations org = new Organizations(name, email, phone, location, about, type,cFlag, dFlag);
 
         mFirebaseDatabase.child(userId).setValue(org);
         addOrgChangeListener();

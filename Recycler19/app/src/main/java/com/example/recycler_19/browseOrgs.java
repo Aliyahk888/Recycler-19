@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class browseOrgs extends AppCompatActivity {
     String recType;
     RecyclerView recview;
-    TextView tw;
     myAdapter adapter;
     Button bck;
 
@@ -26,8 +25,6 @@ public class browseOrgs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_orgs);
 
-        tw = (TextView) findViewById(R.id.noOrgs);
-
         bck = (Button) findViewById(R.id.backbutton);
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +32,7 @@ public class browseOrgs extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), typeSelect.class));
             }
         });
+
 
         recType = getIntent().getStringExtra("Type");
 
@@ -48,16 +46,8 @@ public class browseOrgs extends AppCompatActivity {
 
         adapter = new myAdapter(options, recType);
         recview.setAdapter(adapter);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (recview.getChildCount() == 0) {
-                    tw.setVisibility(View.VISIBLE);
-                }
-            }
 
-        }, 3500);
+
     }
 
 

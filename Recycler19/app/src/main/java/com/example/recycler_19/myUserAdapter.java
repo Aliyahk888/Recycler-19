@@ -32,8 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 public class myUserAdapter extends FirebaseRecyclerAdapter<Deets, myUserAdapter.myviewholder> {
     final FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
     final String cur_email = user1.getEmail();
-    private DatabaseReference mFirebaseDatabase;
-    private FirebaseDatabase mFirebaseInstance;
 
     public myUserAdapter(@NonNull FirebaseRecyclerOptions<Deets> options) {
         super(options);
@@ -63,7 +61,7 @@ public class myUserAdapter extends FirebaseRecyclerAdapter<Deets, myUserAdapter.
             super(itemView);
             name=(TextView)itemView.findViewById(R.id.userNameText);
             phone=(TextView) itemView.findViewById(R.id.userPhoneText);
-            rel_id=(RelativeLayout)itemView.findViewById(R.id.rel_id);
+            rel_id=(RelativeLayout)itemView.findViewById(R.id.user_rel_id);
         }
     }
 }

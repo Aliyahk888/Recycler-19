@@ -18,12 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class myAdapter extends FirebaseRecyclerAdapter<Organizations, myAdapter.myviewholder> {
-    final FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
-    final String cur_email = user1.getEmail();
     String recType;
     public myAdapter(@NonNull FirebaseRecyclerOptions<Organizations> options, String recType) {
         super(options);
@@ -62,8 +58,6 @@ public class myAdapter extends FirebaseRecyclerAdapter<Organizations, myAdapter.
 
     static class myviewholder extends RecyclerView.ViewHolder
     {
-        int cFlag = 0;
-        int dFlag = 0;
         TextView name,type;
         ImageView covidImg, deliveryImg;
         RelativeLayout rel_id;

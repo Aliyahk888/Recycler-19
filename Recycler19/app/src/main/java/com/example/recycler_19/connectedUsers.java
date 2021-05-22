@@ -16,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class connectedUsers extends AppCompatActivity {
     RecyclerView recview;
-    TextView tw;
     myUserAdapter adapter;
     Button bck;
 
@@ -25,9 +24,8 @@ public class connectedUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connected_users);
 
-        tw = (TextView) findViewById(R.id.noOrgs);
 
-        bck = (Button) findViewById(R.id.backbutton);
+        bck = (Button) findViewById(R.id.connBackbutton);
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +33,8 @@ public class connectedUsers extends AppCompatActivity {
             }
         });
 
-        recview = (RecyclerView) findViewById(R.id.recview);
+
+        recview = (RecyclerView) findViewById(R.id.connRecview);
         recview.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<Deets> options =
@@ -45,16 +44,8 @@ public class connectedUsers extends AppCompatActivity {
 
         adapter = new myUserAdapter(options);
         recview.setAdapter(adapter);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (recview.getChildCount() == 0) {
-                    tw.setVisibility(View.VISIBLE);
-                }
-            }
 
-        }, 3500);
+
     }
 
     @Override

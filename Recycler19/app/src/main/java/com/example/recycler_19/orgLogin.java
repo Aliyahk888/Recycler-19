@@ -48,12 +48,12 @@ public class orgLogin extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orgLogin();
+                orgLogintoAPSU();
             }
         });
     }
 
-    private void orgLogin(){
+    private void orgLogintoAPSU(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
