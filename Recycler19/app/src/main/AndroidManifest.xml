@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recycler19">
-        <activity android:name=".connectedUsers"></activity>
+        <activity android:name=".redeemRecycler"></activity>
+        <activity android:name=".connectedUsers" />
         <activity android:name=".organizationPage" />
         <activity android:name=".browseOrgs" />
         <activity android:name=".typeSelect" />

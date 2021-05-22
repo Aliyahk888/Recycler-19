@@ -17,6 +17,7 @@ public class userHomepage extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Button logout;
     private Button browse;
+    private Button redeem;
     private Button myAccount;
     private Button connectedOrgs;
 
@@ -24,6 +25,15 @@ public class userHomepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
+
+        redeem=(Button)findViewById(R.id.redeemPage);
+
+        redeem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), redeemRecycler.class));
+            }
+        });
 
         browse=(Button)findViewById(R.id.browseOrgs);
         browse.setOnClickListener(new View.OnClickListener() {
